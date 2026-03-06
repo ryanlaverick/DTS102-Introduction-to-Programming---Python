@@ -1,6 +1,7 @@
 from copy import copy
 from typing import Type
 from random import shuffle
+from Song import Song
 
 import Song
 
@@ -15,8 +16,8 @@ class Playlist:
     def get_songs(self):
         return self.songs
 
-    def add_song(self, song: Type[Song]):
-        self.songs[song.get_name] = song
+    def add_song(self, name: str, artist: str, genre: str):
+        self.songs[name] = Song(name, artist, genre)
 
     def shuffle_songs(self):
         songs = copy(self.songs)

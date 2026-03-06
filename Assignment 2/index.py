@@ -136,7 +136,7 @@ def add_song_to_playlist(playlist_name: str, song_name: str, song_artist: str, s
         print_formatted('Unable to add Song to Playlist as the genre is blank!')
         return False
 
-    target_playlist.add_song(song=Song(song_name, song_artist, song_genre))
+    target_playlist.add_song(song_name, song_artist, song_genre)
     return True
 
 def remove_song_from_playlist(playlist_name, song_name) -> bool:
