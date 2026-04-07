@@ -247,6 +247,19 @@ def attempt_add_song() -> bool:
 
     return add_song(playlist_name, song_name, song_artist, song_genre)
 
+def attempt_remove_song() -> bool:
+    playlist_name = str(input('Please enter the name of the Playlist to remove a Song from: '))
+    while not playlist_name:
+        pretty_print('Unable to add a Song to this Playlist as the name is blank! Please try again...')
+        playlist_name = str(input('Please enter the name of the Playlist to remove a Song from: '))
+
+    song_name = str(input('Please enter the name of the Song to remove: '))
+    while not song_name:
+        pretty_print('Unable to add this Song as the name is blank! Please try again...')
+        song_name = str(input('Please enter the name of the Song to remove: '))
+
+    return remove_song(playlist_name, song_name)
+
 continuing = True
 while continuing:
     pretty_print([
@@ -328,7 +341,6 @@ while continuing:
         pretty_print(f'Successfully renamed Playlist from {old_name} to {new_name}!')
         sleep(2)
 
-
     if action == 3:
         name = str(input('Please enter the name of a Playlist to remove: '))
 
@@ -357,25 +369,14 @@ while continuing:
         sleep(2)
 
     if action == 5:
-        playlist_name = str(input('Please enter the name of the Playlist to remove a Song from: '))
-        while not playlist_name:
-            pretty_print('Unable to add a Song to this Playlist as the name is blank! Please try again...')
-            playlist_name = str(input('Please enter the name of the Playlist to remove a Song from: '))
+        result = attempt_remove_song()
 
-        song_name = str(input('Please enter the name of the Song to remove: '))
-        while not song_name:
-            pretty_print('Unable to add this Song as the name is blank! Please try again...')
-            song_name = str(input('Please enter the name of the Song to remove: '))
-
-        result = remove_song(playlist_name, song_name)
         while not result:
             pretty_print('Unable to remove Song! Please try again...')
-            playlist_name = str(input('Please enter the name of the Playlist to remove a Song from: '))
-            result = remove_song(playlist_name, song_name)
+            result = attempt_remove_song()
 
         pretty_print('Successfully removed Song from Playlist!')
         sleep(2)
-
 
     if action == 6:
         name = str(input('Please enter the name of a Playlist to sort: '))
