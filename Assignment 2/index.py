@@ -224,6 +224,29 @@ while not is_authenticated:
     login_attempts += 1
     pretty_print('Please try again!')
 
+def attempt_add_song() -> bool:
+    playlist_name = str(input('Please enter the name of the Playlist to add a Song to: '))
+    while not playlist_name:
+        pretty_print('Unable to add a Song to this Playlist as the name is blank! Please try again...')
+        playlist_name = str(input('Please enter the name of the Playlist to add a Song to: '))
+
+    song_name = str(input('Please enter the name of the Song to add: '))
+    while not song_name:
+        pretty_print('Unable to add this Song as the name is blank! Please try again...')
+        song_name = str(input('Please enter the name of the Song to add: '))
+
+    song_artist = str(input('Please enter the artist of the Song to add: '))
+    while not song_artist:
+        pretty_print('Unable to add this Song as the artist is blank! Please try again...')
+        song_artist = str(input('Please enter the artist of the Song to add: '))
+
+    song_genre = str(input('Please enter the genre of the Song to add: '))
+    while not song_genre:
+        pretty_print('Unable to add this Song as the genre is blank! Please try again...')
+        song_genre = str(input('Please enter the genre of the Song to add: '))
+
+    return add_song(playlist_name, song_name, song_artist, song_genre)
+
 continuing = True
 while continuing:
     pretty_print([
@@ -324,31 +347,11 @@ while continuing:
         sleep(2)
 
     if action == 4:
-        playlist_name = str(input('Please enter the name of the Playlist to add a Song to: '))
-        while not playlist_name:
-            pretty_print('Unable to add a Song to this Playlist as the name is blank! Please try again...')
-            playlist_name = str(input('Please enter the name of the Playlist to add a Song to: '))
+        result = attempt_add_song()
 
-        song_name = str(input('Please enter the name of the Song to add: '))
-        while not song_name:
-            pretty_print('Unable to add this Song as the name is blank! Please try again...')
-            song_name = str(input('Please enter the name of the Song to add: '))
-
-        song_artist = str(input('Please enter the artist of the Song to add: '))
-        while not song_artist:
-            pretty_print('Unable to add this Song as the artist is blank! Please try again...')
-            song_artist = str(input('Please enter the artist of the Song to add: '))
-
-        song_genre = str(input('Please enter the genre of the Song to add: '))
-        while not song_genre:
-            pretty_print('Unable to add this Song as the genre is blank! Please try again...')
-            song_genre = str(input('Please enter the genre of the Song to add: '))
-
-        result = add_song(playlist_name, song_name, song_artist, song_genre)
         while not result:
             pretty_print('Unable to add Song! Please try again...')
-            playlist_name = str(input('Please enter the name of the Playlist to add a Song to: '))
-            result = add_song(playlist_name, song_name, song_artist, song_genre)
+            result = attempt_add_song()
 
         pretty_print('Successfully added Song to Playlist!')
         sleep(2)
