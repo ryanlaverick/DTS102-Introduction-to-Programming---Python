@@ -143,6 +143,21 @@ def remove_playlist(name: str) -> bool:
     del playlists[name]
     return True
 
+def add_song(playlist_name: str, song_name: str, song_artist: str, song_genre: str) -> bool:
+    if playlist_name not in playlists:
+        return False
+
+    playlist: Playlist = playlists[playlist_name]
+
+    return playlist.add_song(song_name, song_artist, song_genre)
+
+def remove_song(playlist_name: str, song_name: str) -> bool:
+    if playlist_name not in playlists:
+        return False
+
+    playlist: Playlist = playlists[playlist_name]
+
+    return playlist.remove_song(song_name)
 
 def sort_playlist(name: str) -> list | bool:
     if name not in playlists:
@@ -258,7 +273,38 @@ while continuing:
         sleep(2)
 
     if action == 2:
-        break
+        old_name = str(input('Please enter the name of the Playlist to rename: '))
+
+        while not old_name:
+            pretty_print('Unable to rename this Playlist as the name is blank! Please try again...')
+            old_name = str(input('Please enter the name of the Playlist to rename: '))
+
+        while old_name not in playlists:
+            pretty_print(f'Unable to rename Playlist {old_name} as it does not exist! Please try again...')
+            old_name = str(input('Please enter the name of the Playlist to rename: '))
+
+        new_name = str(input('Please enter the new name of this Playlist: '))
+
+        while not new_name:
+            pretty_print('Unable to rename this Playlist as the name is blank! Please try again...')
+            new_name = str(input('Please enter the new name of this Playlist: '))
+
+        while new_name in playlists:
+            pretty_print(f'Unable to rename Playlist to {new_name} as it already exists! Please try again...')
+            new_name = str(input('Please enter the new name of this Playlist: '))
+
+        result = rename_playlist(old_name, new_name)
+
+        while not result:
+            pretty_print('Unable to rename Playlist! Please try again...')
+            old_name = str(input('Please enter the name of the Playlist to rename: '))
+            new_name = str(input('Please enter the new name of this Playlist: '))
+
+            result = rename_playlist(old_name, new_name)
+
+        pretty_print(f'Successfully renamed Playlist from {old_name} to {new_name}!')
+        sleep(2)
+
 
     if action == 3:
         name = str(input('Please enter the name of a Playlist to remove: '))
@@ -278,10 +324,55 @@ while continuing:
         sleep(2)
 
     if action == 4:
-        break
+        playlist_name = str(input('Please enter the name of the Playlist to add a Song to: '))
+        while not playlist_name:
+            pretty_print('Unable to add a Song to this Playlist as the name is blank! Please try again...')
+            playlist_name = str(input('Please enter the name of the Playlist to add a Song to: '))
+
+        song_name = str(input('Please enter the name of the Song to add: '))
+        while not song_name:
+            pretty_print('Unable to add this Song as the name is blank! Please try again...')
+            song_name = str(input('Please enter the name of the Song to add: '))
+
+        song_artist = str(input('Please enter the artist of the Song to add: '))
+        while not song_artist:
+            pretty_print('Unable to add this Song as the artist is blank! Please try again...')
+            song_artist = str(input('Please enter the artist of the Song to add: '))
+
+        song_genre = str(input('Please enter the genre of the Song to add: '))
+        while not song_genre:
+            pretty_print('Unable to add this Song as the genre is blank! Please try again...')
+            song_genre = str(input('Please enter the genre of the Song to add: '))
+
+        result = add_song(playlist_name, song_name, song_artist, song_genre)
+        while not result:
+            pretty_print('Unable to add Song! Please try again...')
+            playlist_name = str(input('Please enter the name of the Playlist to add a Song to: '))
+            result = add_song(playlist_name, song_name, song_artist, song_genre)
+
+        pretty_print('Successfully added Song to Playlist!')
+        sleep(2)
 
     if action == 5:
-        break
+        playlist_name = str(input('Please enter the name of the Playlist to remove a Song from: '))
+        while not playlist_name:
+            pretty_print('Unable to add a Song to this Playlist as the name is blank! Please try again...')
+            playlist_name = str(input('Please enter the name of the Playlist to remove a Song from: '))
+
+        song_name = str(input('Please enter the name of the Song to remove: '))
+        while not song_name:
+            pretty_print('Unable to add this Song as the name is blank! Please try again...')
+            song_name = str(input('Please enter the name of the Song to remove: '))
+
+        result = remove_song(playlist_name, song_name)
+        while not result:
+            pretty_print('Unable to remove Song! Please try again...')
+            playlist_name = str(input('Please enter the name of the Playlist to remove a Song from: '))
+            result = remove_song(playlist_name, song_name)
+
+        pretty_print('Successfully removed Song from Playlist!')
+        sleep(2)
+
 
     if action == 6:
         name = str(input('Please enter the name of a Playlist to sort: '))

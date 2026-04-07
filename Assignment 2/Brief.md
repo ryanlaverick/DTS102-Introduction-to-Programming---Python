@@ -28,14 +28,14 @@ feature can be by means of displaying a message only. - Use Python sleep functio
 
 2. System features: (30%) 
     The system should display numbered options for users to perform the following tasks:
-   1. Option 1. Add a playlist
-   2. Option 2. Rename a playlist
-   3. Option 3. Remove a playlist
-   4. Option 4. Add song to a playlist
-   5. Option 6. Remove song from playlist
-   6. Option 7. Sort playlist
-   7. Option 9. Shuffle songs from a playlist
-   8. Option 10. Exit programme
+   1. Option 1. Add a playlist // Done
+   2. Option 2. Rename a playlist // Done
+   3. Option 3. Remove a playlist // Done
+   4. Option 4. Add song to a playlist // Done
+   5. Option 6. Remove song from playlist // Done
+   6. Option 7. Sort playlist // Done
+   7. Option 9. Shuffle songs from a playlist // Done
+   8. Option 10. Exit programme // Done
    
 #
 
