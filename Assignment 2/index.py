@@ -1,5 +1,4 @@
-from collections import OrderedDict
-from copy import copy, deepcopy
+from copy import deepcopy
 from random import shuffle
 from time import sleep
 
