@@ -56,7 +56,7 @@ class Playlist:
         if name not in self.songs:
             return False
 
-        del self.songs[name]
+        self.songs.pop(name)
         return True
 
     def sort(self) -> Playlist:
@@ -129,9 +129,10 @@ def rename_playlist(old_name: str, new_name: str) -> bool:
         return False
 
     playlist: Playlist = playlists[old_name]
-    playlists[new_name] = playlist
+    playlists.pop(old_name)
 
-    del playlists[old_name]
+    playlist.set_name(new_name)
+    playlists[new_name] = playlist
 
     return True
 
@@ -140,8 +141,9 @@ def remove_playlist(name: str) -> bool:
     if name not in playlists:
         return False
 
-    del playlists[name]
+    playlists.pop(name)
     return True
+
 
 def add_song(playlist_name: str, song_name: str, song_artist: str, song_genre: str) -> bool:
     if playlist_name not in playlists:
@@ -151,6 +153,7 @@ def add_song(playlist_name: str, song_name: str, song_artist: str, song_genre: s
 
     return playlist.add_song(song_name, song_artist, song_genre)
 
+
 def remove_song(playlist_name: str, song_name: str) -> bool:
     if playlist_name not in playlists:
         return False
@@ -158,6 +161,7 @@ def remove_song(playlist_name: str, song_name: str) -> bool:
     playlist: Playlist = playlists[playlist_name]
 
     return playlist.remove_song(song_name)
+
 
 def sort_playlist(name: str) -> list | bool:
     if name not in playlists:
