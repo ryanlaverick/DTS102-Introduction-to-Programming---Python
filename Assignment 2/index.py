@@ -328,6 +328,11 @@ def rename_playlist(old_name: str, new_name: str) -> bool:
         pretty_print(f'Unable to rename Playlist {old_name} as it does not exist!')
         return False
 
+    """ Performs a check to ensure that the new name provided is not blank. If it is blank, FALSE is returned """
+    if not new_name:
+        pretty_print(f'Unable to rename Playlist {old_name} as the name is blank')
+        return False
+
     """" Performs a check to ensure that the new name of the Playlist is not already in use. If it is, FALSE is returned """
     if new_name in playlists:
         pretty_print(f'Unable to rename Playlist to {old_name} to {new_name} as it already exists!')
