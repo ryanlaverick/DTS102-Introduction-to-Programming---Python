@@ -448,7 +448,7 @@ def shuffle_playlist(name: str) -> list[str] | bool:
 
     """ Performs a check to ensure the Playlist exists within the dictionary with the provided name. If not, FALSE is returned """
     if name not in playlists:
-        pretty_print(f'Unable to sort Playlist {name} as it does not exist!')
+        pretty_print(f'Unable to shuffle Playlist {name} as it does not exist!')
         return False
 
     """ Locates the Playlist instance which needs to be shuffled from the dictionary, using the Playlist name to perform the lookup """
