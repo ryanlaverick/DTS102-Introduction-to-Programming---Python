@@ -295,6 +295,11 @@ def add_playlist(name: str, songs=None) -> bool:
     :rtype bool
     """
 
+    """ Performs a check to ensure that the Playlist name is not blank. If it is, FALSE is returned and a message is displayed to the user """
+    if not name:
+        pretty_print('Unable to add a new Playlist as the name is blank! Please try again...')
+        return False
+
     """ Performs a check to ensure that the Playlist name is already in use. If it is, FALSE is returned and a message is displayed to the user """
     if name in playlists:
         pretty_print(f'Unable to add Playlist {name} as it already exists!')
@@ -630,7 +635,7 @@ while continuing:
     action = int(action)
     while action not in range(0, 9):
         pretty_print(f'Unable to perform action "{action}". Please provide a number between 0 and 8!"')
-        action = input('Enter the action you would like to perform (example 1): ')
+        action = int(input('Enter the action you would like to perform (example 1): '))
 
     """ Checks if the value contained within the `action` variable is 0, if it is, then execute the following code block """
     if action == 0:
@@ -641,7 +646,7 @@ while continuing:
     if action == 1:
         name = str(input('Please enter a name for the new Playlist: '))
 
-        """ Continually re-prompt the user if the provided Playlist name is blank. This would cause the action to fail as the Playlist would not exist """
+        """ Continually re-prompt the user if the provided Playlist name is blank. This would cause the action to fail as the Playlist name would be blank """
         while not name:
             pretty_print('Unable to add a new Playlist as the name is blank! Please try again...')
             name = str(input('Please enter a name for the new Playlist: '))
