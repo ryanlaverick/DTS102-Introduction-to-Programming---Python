@@ -579,14 +579,14 @@ def attempt_remove_song() -> bool:
 
     """ Using a `while` loop here will continually re-trigger the code inside of the block until `playlist_name` has a value - this ensures the user cannot provide invalid data """
     while not playlist_name:
-        pretty_print('Unable to add a Song to this Playlist as the name is blank! Please try again...')
+        pretty_print('Unable to remove Song from this Playlist as the Playlist name is blank! Please try again...')
 
         """ Replay the question continually until a satisfactory value is encountered """
         playlist_name = str(input('Please enter the name of the Playlist to remove a Song from: '))
 
     song_name = str(input('Please enter the name of the Song to remove: '))
     while not song_name:
-        pretty_print('Unable to add this Song as the name is blank! Please try again...')
+        pretty_print('Unable to remove Song from this Playlist as the Song name is blank! Please try again...')
 
         """ Replay the question continually until a satisfactory value is encountered """
         song_name = str(input('Please enter the name of the Song to remove: '))
